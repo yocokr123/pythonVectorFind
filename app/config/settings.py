@@ -116,7 +116,7 @@ class TestSettings(Settings):
     debug: bool = True
 
 
-def get_settings_by_env(env: str = None) -> Settings:
+def get_settings_by_env(env: Optional[str] = None) -> Settings:
     """환경에 따른 설정 반환"""
     if env is None:
         env = os.getenv("APP_ENV", "development").lower()

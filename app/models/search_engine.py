@@ -141,11 +141,12 @@ class ContextualSearchEngine:
             List[float]: 임베딩 벡터
         """
         try:
+            dim = self.vector_dimension if isinstance(self.vector_dimension, int) and self.vector_dimension else 384
             embedding = self.embedding_model.encode(text)
-            return embedding.tolist()
+            return np.array(embedding).tolist()
         except Exception as e:
             logger.error(f"임베딩 생성 중 오류: {e}")
-            return [0.0] * self.vector_dimension
+            return [0.0] * dim
     
     def index_document(self, doc_id: str, title: str, content: str, 
                       category: Optional[str] = '', tags: Optional[List[str]] = None, created_at: Optional[str] = None):

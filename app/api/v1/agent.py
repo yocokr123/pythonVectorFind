@@ -6,7 +6,7 @@ import logging
 from app.models.agent import Agent, AgentAction
 from app.core.dependencies import get_agent_service
 
-router = APIRouter(prefix="/agent", tags=["AI Agent"])
+router = APIRouter(prefix="/agent", tags=["agent"])
 
 class AgentRequest(BaseModel):
     goal: str
@@ -32,7 +32,7 @@ async def create_agent(request: AgentRequest):
         agent = agent_service.create_agent(request.goal)
         
         # 계획 수립
-        plan = agent.think(request.goal, request.context)
+        plan = agent.think(request.goal, request.context or "")
         
         return AgentResponse(
             agent_id=agent.name,
