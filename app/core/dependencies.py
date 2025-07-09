@@ -5,7 +5,6 @@
 from typing import Optional
 from app.models.search_engine import ContextualSearchEngine
 from app.services.search_service import SearchService
-from app.services.agent_service import get_agent_service
 from app.config.settings import get_settings
 
 # 전역 변수로 검색 엔진 인스턴스 관리
